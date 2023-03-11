@@ -7,44 +7,53 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            expenses: [],
+            expenses: [{id: 13123, description: 'hello', title: 'Welcome', ammount: '21', year: 2023, month: 3, day: 3},
+                {id: 2123, description: 'hello', title: 'Welcome', ammount: '21', year: 2023, month: 1, day: 31},
+                {id: 3123, description: 'hello', title: 'Welcome', ammount: '21', year: 2023, month: 3, day: 31},
+                {id: 44312, description: 'hello', title: 'Welcome', ammount: '21', year: 2023, month: 2, day: 31},
+            ],
             balance: 0,
             monthlyBalance: 0,
             recurring: []
         }
     }
-// export default function Home() {
-//     const [ expense, setExpenses ] = useState([{id: 1, description: 'Hello', title: 'Groceries', ammount: 20}]);
-//     const [ payment, setPayments ] = useState([{id: 1, description: 'Hello', title: 'Groceries', ammount: 20}]);
-//     const [ balance, setBalance ] = useState(0)
-    componentDidMount() {
-        const dateNow = new Date()
-        console.log(dateNow.getDate())
-        if (parseInt(dateNow.getDate()) === 1) {
-            localStorage.setItem('monthlyBalance', JSON.stringify(0))
-        }
+
+
+
+    getThisMonths = () => {
+            let date = new Date();
+            const month = date.getMonth();
+            const year = date.getFullYear();
+            let arr = []
+            this.state.expenses.map(expense => {
+                if(expense.month === month && expense.year === year) {
+                    arr.push(expense)
+                } else {
+                    arr.slice(arr.indexOf(expense))
+                }
+            })
+            console.log(arr)
+            let total = 0.0;
+            arr.map(expense => {
+                total = total + parseFloat(expense.ammount)
+            })
+            return total
+        }       
         
-    }
-    addBalance = (num) => {
-        this.setState(prevstate => ({ balance: parseFloat(prevstate.balance) + parseFloat(num)}))
-    };
-    removeBalance = (num) => {
-        this.setState(prevstate => ({ balance: parseFloat(prevstate.balance) - parseFloat(num)}))
-    };
-    addMonthlyBalance = (num) => {
-        this.setState(prevstate => ({ monthlyBalance: parseFloat(prevstate.monthlyBalance) + parseFloat(num)}))
-    };
-    removeMonthlyBalance = (num) => {
-        this.setState(prevstate => ({ monthlyBalance: parseFloat(prevstate.monthlyBalance) - parseFloat(num)}))
-    };
-    localStorageMonthlyBalance = (num) => {
-        let prevNumber = JSON.parse(localStorage.getItem('monthlyBalance'))
-        let total = parseFloat(prevNumber) + parseFloat(num)
-        localStorage.setItem('monthlyBalance', JSON.stringify(total))
-    }
-    addTransaction = (ids, titles, descriptions, ammounts, times) => {
+        balance() {
+            let total = 0.0;
+            this.state.expenses.map(expense => {
+                total = total + parseFloat(expense.ammount)
+            })
+            return total
+        }
+// ........................................................under, working on
+
+// .......................................................................above, working on
+
+    addTransaction = (ids, titles, descriptions, ammounts, years, months, days) => {
         this.setState({
-            expenses: [...this.state.expenses, {id: ids, description: descriptions, title: titles, ammount: ammounts, time: times}]
+            expenses: [...this.state.expenses, {id: ids, description: descriptions, title: titles, ammount: ammounts, year: years, month: months, day: days}]
         })
     }
     
@@ -69,7 +78,7 @@ export default class Home extends Component {
                     <div className="balance-widget">
                         <h2>BALANCE</h2>
                         <div className="balance">
-                            <p>${this.state.balance}</p>
+                            <p>${this.balance()}</p>
                         </div>
                     </div>
 
@@ -83,7 +92,7 @@ export default class Home extends Component {
                                     <h3 className="transaction-title">{expense.title}</h3>
                                     <p className="transaction-description">"{expense.description}"</p>
                                     <p className="transaction-ammount">${expense.ammount}</p>
-                                    <p>{expense.time}</p>
+                                    <p>{expense.year}, {expense.month}, {expense.day}</p>
                                 </div>
                             )
                         })}
@@ -109,7 +118,7 @@ export default class Home extends Component {
 
                     <div className="stats">
                         <h2>THIS MONTH</h2>
-                        {<p> ${ /*localStorage.getItem('monthlyBalance') === null ? 0 : */ JSON.parse(localStorage.getItem('monthlyBalance'))}</p>}
+                        {<p> ${this.getThisMonths()}</p>}
                     </div>
                     </div>
                 <div className="button-transaction">
@@ -122,10 +131,8 @@ export default class Home extends Component {
                     addBalance={this.addBalance}
                     addTransaction={this.addTransaction} 
                     removeBalance={this.removeBalance} 
-                    addMonthlyBalance={this.addMonthlyBalance}
-                    removeMonthlyBalance={this.removeMonthlyBalance}
-                    localStorageMonthlyBalance={this.localStorageMonthlyBalance}
-                    stateMonthlyBalance = {this.state.monthlyBalance}
+                    getThisMonths={this.getThisMonths}
+                    balance={this.balance}
                 />
                 <Add_Recurring 
                     addRecurringTransactions={this.addRecurringTransactions}

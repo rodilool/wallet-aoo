@@ -10,9 +10,10 @@ class Add_Transaction extends React.Component{
         this.addBalance = this.props.addBalance;
         this.addTransaction = this.props.addTransaction;
         this.removeBalance = this.props.removeBalance;
-        this.addMonthlyBalance = this.props.addMonthlyBalance;
-        this.removeMonthlyBalance = this.props.removeMonthlyBalance;
-        this.localStorageMonthlyBalance = this.props.localStorageMonthlyBalance;
+
+        this.getThisMonths = this.props.getThisMonths;
+        this.balance = this.props.balance;
+
         this.state = {
             active: 'first'
         }
@@ -22,31 +23,40 @@ class Add_Transaction extends React.Component{
     onSubmitGain = (event) => {
         event.preventDefault()
         let date = new Date();
+
         this.title = event.target.title.value
         this.description = event.target.description.value
         this.ammount = event.target.ammount.value
-        this.time = date.toUTCString()
         this.id = Math.random() * 1000000
-        this.addBalance(this.ammount)
-        this.addMonthlyBalance(this.ammount)
-        this.addTransaction(this.id, this.title, this.description, this.ammount, this.time)
-        this.localStorageMonthlyBalance(this.ammount)
+
+        this.year = date.getFullYear()
+        this.month = date.getMonth()
+        this.day = date.getDate()
+        
+        this.addTransaction(this.id, this.title, this.description, this.ammount, this.year, this.month, this.day)
+
         event.target.title.value = ''
         event.target.description.value = ''
         event.target.ammount.value = ''
     };
 
+
+
     onSubmitSpent = (event) => {
         event.preventDefault()
         let date = new Date();
+
         this.title = event.target.title.value
         this.description = event.target.description.value
         this.negativeAmmount = event.target.ammount.value
-        this.time = date.toUTCString()
-        this.removeBalance(this.negativeAmmount)
         this.id = Math.random() * 1000000
-        this.addTransaction(this.id, this.title, this.description, -this.negativeAmmount, this.time)
-        this.removeMonthlyBalance(this.negativeAmmount)
+
+        this.year = date.getFullYear()
+        this.month = date.getMonth()
+        this.day = date.getDate()
+        
+        this.addTransaction(this.id, this.title, this.description, -this.negativeAmmount, this.year, this.month, this.day)
+
         event.target.title.value = ''
         event.target.description.value = ''
         event.target.ammount.value = ''
