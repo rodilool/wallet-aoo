@@ -1,0 +1,34 @@
+form{
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+    width: 500px;
+    height: 500px;
+    background-color: gray;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    transition: 1s ease-in;
+}
+/* .steps{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 500px;
+    height: 500px;
+    background-color: gray;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+} */
+
+.close{
+    font-size: 2rem;
+    position: absolute;
+    top: 1%;
+    right: 5%;
+}

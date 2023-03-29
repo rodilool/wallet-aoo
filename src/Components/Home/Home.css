@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    font-size: 16px;
+}
+
+.main{
+    display: grid;
+    height: 82vh;
+    padding: 2rem 8rem;
+    grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+    gap: 3.5rem;
+}
+
+.balance-widget,
+.transactions,
+.stats{
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 1.5rem;
+    background-color: rgb(221, 221, 221);
+}
+
+/* balance widget*/
+.balance-widget{
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.balance-widget h2{
+    font-size: 2.5rem;
+}
+
+.balance{
+    padding: 2rem;
+}
+.balance p {
+    font-size: 4rem;
+    margin:auto auto;
+}
+/* transactions widget*/
+.transactions{
+    grid-column: span 1;
+    grid-row: span 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.transactions h2{
+    font-size: 1.5rem;
+}
+
+.list{
+    background-color: rgb(163, 163, 163);
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    overflow-y: scroll;
+}
+
+
+.item{
+    border-bottom: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+}
+
+.item .transaction-title{
+    font-size: 1.25rem;
+    margin-bottom: 0.35rem;
+}
+.item .transaction-description{
+    font-style: italic;
+    font-size: 0.85rem;
+}
+.item .transaction-ammount{
+    align-self: flex-end;
+    margin: 0.35rem;
+}
+/* stats widget*/
+.stats{
+    grid-row: span 1;
+    grid-column: span 2;
+
+}
+
+.stats h2{
+    font-size: 2.5rem;
+}
+
+.button{
+    position: absolute;
+    bottom: 5%;
+    right: 1%;
+    width: 70px;
+    height: 70px;
+    background-color: gray;
+    border-radius: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.button p{
+    font-size: 4rem;
+    padding: 0;
+    margin-top: -10px;
+    color: whitesmoke;
+    font-weight: bolder;
+
+}
