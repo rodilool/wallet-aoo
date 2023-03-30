@@ -1,4 +1,4 @@
-form{
+#tab{
     position: absolute;
     right: 1%;
     bottom: 1%;
@@ -8,9 +8,18 @@ form{
     border: 2px solid black;
     border-radius: 25px;
     padding: 3rem;
-    display: flex;
+    display: none;
     flex-direction: column;
     transition: 1s ease-in;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+.form{
+    display: flex;
+    flex-direction: column;
 }
 /* .steps{
     position: absolute;
@@ -31,4 +40,22 @@ form{
     position: absolute;
     top: 1%;
     right: 5%;
+    cursor: pointer;
+}
+
+.choices-list{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none
+    ;
+}
+
+.choice{
+    margin: 0 2rem;
+    font-weight: bold;
+
+}
+
+.active{
+    color: rgba(0, 0, 0, 0.281);
 }
