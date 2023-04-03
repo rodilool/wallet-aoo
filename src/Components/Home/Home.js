@@ -12,7 +12,6 @@ export default class Home extends Component {
     );
     this.state = {
       expenses: storedTransactions || [],
-      balance: 0,
       monthlyBalance: 0,
       recurring: storedRecurringTransactions || [],
     };
@@ -51,7 +50,7 @@ export default class Home extends Component {
   // it will map thought the expenses state and add all the ammounts of each object to a total and display it.
 
   balance() {
-    let total = 0.0;
+    let total = parseFloat(this.props.balance);
     this.state.expenses.map((expense) => {
       total = total + parseFloat(expense.ammount);
     });

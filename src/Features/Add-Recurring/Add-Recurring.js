@@ -103,7 +103,8 @@ class Add_Recurring extends React.Component {
           id="form"
           name="ammount"
           className="form-ammount"
-          type="float"
+          type="number"
+          step="0.01"
           placeholder="Ammount"
           required
         ></input>
@@ -113,6 +114,7 @@ class Add_Recurring extends React.Component {
           name="dayOfTransaction"
           className="form-dayOfTransaction"
           type="number"
+          max="31"
           placeholder="Day of transaction"
           required
         ></input>

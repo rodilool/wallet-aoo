@@ -21,19 +21,6 @@ form{
     display: flex;
     flex-direction: column;
 }
-/* .steps{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 500px;
-    height: 500px;
-    background-color: gray;
-    border: 2px solid black;
-    border-radius: 25px;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-} */
 
 .close{
     font-size: 2rem;
