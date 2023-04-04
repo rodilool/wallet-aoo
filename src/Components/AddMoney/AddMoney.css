@@ -29,6 +29,9 @@
     font-weight: bold;
     transition: 600ms ease-in-out;
     cursor: pointer;
+    text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.356),
+    3px 3px 0px rgba(9, 8, 10, 0.438),
+    6px 6px 0px rgba(197, 126, 255, 0.26);
 }
 
 .form{

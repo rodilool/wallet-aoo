@@ -10,9 +10,11 @@ class LoginPage extends Component {
   render() {
     return (
       <main className="LoginPage">
-        <h1>LOG IN</h1>
-        <form onSubmit={this.Register}>
-          <label htmlFor="name">Name:</label>
+        <h1>Register</h1>
+        <form onSubmit={this.Register} className="registerForm">
+          <label htmlFor="name" className="label">
+            Name:
+          </label>
           <input
             id="form"
             name="name"
@@ -21,7 +23,9 @@ class LoginPage extends Component {
             placeholder="Name"
             required
           ></input>
-          <label htmlFor="balance">Balance:</label>
+          <label htmlFor="balance" className="label">
+            Balance:
+          </label>
           <input
             id="form"
             name="balance"
@@ -31,7 +35,9 @@ class LoginPage extends Component {
             placeholder="Balance"
             required
           ></input>
-          <button type="submit">Submit</button>
+          <button type="submit" className="submit">
+            Submit
+          </button>
         </form>
       </main>
     );

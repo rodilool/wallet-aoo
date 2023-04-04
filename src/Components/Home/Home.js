@@ -374,9 +374,17 @@ export default class Home extends Component {
                       onClick={() =>
                         this.recurringTransactionsTransfer(payment)
                       }
-                      className="arrowButton"
+                      className="rightArrowButton"
                     >
                       &rarr;
+                    </button>
+                    <button
+                      onClick={() =>
+                        this.recurringTransactionsTransfer(payment)
+                      }
+                      className="upArrowButton"
+                    >
+                      &uarr;
                     </button>
                     <div className="item">
                       <h3 className="transaction-title">{payment.title}</h3>
@@ -384,7 +392,9 @@ export default class Home extends Component {
                         "{payment.description}"
                       </p>
                       <p className="transaction-ammount">${payment.ammount}</p>
-                      <p>Transaction on day: {payment.dayOfTransaction}</p>
+                      <p className="dayTransaction">
+                        Transaction on day: {payment.dayOfTransaction}
+                      </p>
                     </div>
                   </div>
                 );
