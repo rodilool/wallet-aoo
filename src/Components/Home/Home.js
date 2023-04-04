@@ -216,6 +216,62 @@ export default class Home extends Component {
     });
   };
 
+  incomeGrowth() {
+    let date = new Date();
+    // it displays january being 0, february being 1 etc, so have to add 1
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    let arr = [];
+
+    this.state.expenses.map((expense) => {
+      if (
+        expense.month === month &&
+        expense.year === year &&
+        expense.ammount > 0
+      ) {
+        arr.push(expense);
+      } else {
+        arr.slice(arr.indexOf(expense));
+      }
+    });
+
+    let total = 0.0;
+
+    arr.map((expense) => {
+      total = total + parseFloat(expense.ammount);
+    });
+
+    return total;
+  }
+  incomeReduced() {
+    let date = new Date();
+    // it displays january being 0, february being 1 etc, so have to add 1
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    let arr = [];
+
+    this.state.expenses.map((expense) => {
+      if (
+        expense.month === month &&
+        expense.year === year &&
+        expense.ammount < 0
+      ) {
+        arr.push(expense);
+      } else {
+        arr.slice(arr.indexOf(expense));
+      }
+    });
+
+    let total = 0.0;
+
+    arr.map((expense) => {
+      total = total + parseFloat(expense.ammount);
+    });
+
+    return total;
+  }
   // it opens the tabs to add the transaction and the recurring payments
   openTab_Transaction = () => {
     document.getElementById("tab").style.display = "flex";
@@ -233,10 +289,32 @@ export default class Home extends Component {
               <h2>BALANCE</h2>
               <p className="total">${this.balance()}</p>
             </div>
-            <div className="stats">
+            <div className="monthstats">
               <div className="thisDate">
                 <h2>THIS MONTH</h2>
-                {<p> ${this.getThisMonths()}</p>}
+              </div>
+              <div className="allcurrencies">
+                <div className="income">
+                  {
+                    <p className="total">
+                      {" "}
+                      <span className="arrows">&#8594;</span>$
+                      {this.getThisMonths()}
+                    </p>
+                  }
+                </div>
+                <div className="income">
+                  <p>
+                    <span className="arrows">&#8599;</span>$
+                    {this.incomeGrowth()}
+                  </p>
+                </div>
+                <div className="income lastchild">
+                  <p>
+                    <span className="arrows">&#8600;</span>$
+                    {this.incomeReduced()}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -255,18 +333,23 @@ export default class Home extends Component {
               the expenses state array and display each object on it  */}
               {this.state.expenses.reverse().map((expense) => {
                 return (
-                  <div key={expense.id} className="item">
-                    <button onClick={() => this.deleteTransaction(expense)}>
+                  <div key={expense.id} className="expenses">
+                    <button
+                      onClick={() => this.deleteTransaction(expense)}
+                      className="delete button"
+                    >
                       x
                     </button>
-                    <h3 className="transaction-title">{expense.title}</h3>
-                    <p className="transaction-description">
-                      "{expense.description}"
-                    </p>
-                    <p className="transaction-ammount">${expense.ammount}</p>
-                    <p>
-                      {expense.year}, {expense.month}, {expense.day}
-                    </p>
+                    <div className="item">
+                      <h3 className="transaction-title">{expense.title}</h3>
+                      <p className="transaction-description">
+                        "{expense.description}"
+                      </p>
+                      <p className="transaction-ammount">${expense.ammount}</p>
+                      <p>
+                        {expense.year}, {expense.month}, {expense.day}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
@@ -280,25 +363,29 @@ export default class Home extends Component {
               {/* Will map through the recurring state array and display each object on it  */}
               {this.state.recurring.reverse().map((payment) => {
                 return (
-                  <div key={payment.id} className="item">
+                  <div key={payment.id} className="expenses">
+                    <button
+                      onClick={() => this.deleteRecurringTransaction(payment)}
+                      className="deleteButton"
+                    >
+                      x
+                    </button>
                     <button
                       onClick={() =>
                         this.recurringTransactionsTransfer(payment)
                       }
+                      className="arrowButton"
                     >
-                      &larr;
+                      &rarr;
                     </button>
-                    <button
-                      onClick={() => this.deleteRecurringTransaction(payment)}
-                    >
-                      x
-                    </button>
-                    <h3 className="transaction-title">{payment.title}</h3>
-                    <p className="transaction-description">
-                      "{payment.description}"
-                    </p>
-                    <p className="transaction-ammount">${payment.ammount}</p>
-                    <p>Transaction on day: {payment.dayOfTransaction}</p>
+                    <div className="item">
+                      <h3 className="transaction-title">{payment.title}</h3>
+                      <p className="transaction-description">
+                        "{payment.description}"
+                      </p>
+                      <p className="transaction-ammount">${payment.ammount}</p>
+                      <p>Transaction on day: {payment.dayOfTransaction}</p>
+                    </div>
                   </div>
                 );
               })}

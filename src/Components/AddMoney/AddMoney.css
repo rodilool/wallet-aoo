@@ -1,7 +1,12 @@
-
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 .type-choice{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 534px;
 }
 
 .type-active{
@@ -32,6 +37,7 @@
     background-color: rgba(0, 0, 0, 0.671);
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
+    width: 500px;
 }
 
 form{

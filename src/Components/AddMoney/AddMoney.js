@@ -28,7 +28,7 @@ export default class AddMoney extends Component {
 
   render() {
     return (
-      <content className="content">
+      <nav className="content">
         <div className="type-choice">
           <div
             className={`type-${this.state.active === "first" ? "active" : ""}`}
@@ -59,7 +59,7 @@ export default class AddMoney extends Component {
             ""
           )}
         </div>
-      </content>
+      </nav>
     );
   }
 }

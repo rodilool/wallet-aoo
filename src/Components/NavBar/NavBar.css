@@ -19,11 +19,11 @@ body {
     display: block;
     background: linear-gradient(
       to bottom, 
-      #000000, #7c7c7c 20%, 
+      whitesmoke, #d4d4d4 20%, 
       rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 40%, 
-      #000000 40%, #7c7c7c 60%, 
+      whitesmoke 40%, #d4d4d4 60%, 
       rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0) 80%, 
-      #000000 80%, #7c7c7c 100%
+      whitesmoke 80%, #d4d4d4 100%
     );
     position: absolute;
     left: 0;

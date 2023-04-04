@@ -12,7 +12,8 @@ main{
     display: grid;
     height: auto;
     width: 1300px;
-    gap: 3rem;
+    gap: 2rem;
+    margin-bottom: 100px;
 }
 
 .balance-widget,
@@ -26,38 +27,64 @@ main{
 
 /* balance widget*/
 .balance-widget{
-    grid-column: span 1;
+    grid-column: span 2;
     grid-row: span 1;
     height: 560px;
+    justify-self: center;
+    width: 1000px;
     display: grid;
     padding: 0;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
     align-items: center;
+    
 }
 .balance {
-    grid-row: 1;
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    
 }
 .balance h2{
-    font-size: 2.5rem;
+    align-self: left;
+    justify-self: flex-start;
+    font-size: 3rem;
     padding-left: 2rem;
     margin-top: 2rem;
+    letter-spacing: 0.08rem;
+    width: 100%;
+    margin: 0px auto;
+    color: whitesmoke;
+    text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.356),
+      3px 3px 0px rgba(9, 8, 10, 0.438),
+      6px 6px 0px rgba(197, 126, 255, 0.26);
 }
+
 .balance p {
-    font-size: 4rem;
-    margin:1rem auto auto 3rem;
+    font-size: 7rem;
+    font-weight: 600;
+    align-self: center;
+    margin-top: 1rem;
     padding-left: 2rem;
+    text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.356),
+    3px 3px 0px rgba(9, 8, 10, 0.438),
+    6px 6px 0px rgba(197, 126, 255, 0.26);
 }
-.stats{
-    grid-row: span 2;
+.monthstats{
+    grid-row: span 3;
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
-
+    text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.356),
+    3px 3px 0px rgba(23, 23, 24, 0.171),
+    6px 6px 0px rgba(0, 0, 0, 0.123);
     border-radius: 2rem;
-    flex-direction: row;
+    flex-direction: column;
+    
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: rgb(51, 17, 84);
         --mask:
           radial-gradient(140.16px at 50% 180.00px,#000 99%,#0000 101%) calc(50% - 120px) 0/240px 100%,
@@ -65,28 +92,53 @@ main{
         -webkit-mask: var(--mask);
                 mask: var(--mask);
 }
-.stats p{
-    font-size: 4rem;
-    margin:1rem auto auto 3rem;
-    padding: 0 2rem;
+.allcurrencies{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-.stats h2{
-    font-size: 2.5rem;
-    margin-top: 5rem;
-    padding: 0 2rem;
+.monthstats p{
+    font-size: 4rem;
+
+}
+.monthstats h2{
+    font-size: 3rem;
 }
 
 .thisDate{
     flex-direction: column;
     display: flex;
+    margin-top: 5rem;
+}
+.income{
+    margin-top: 2rem;
+    padding: 0 2rem;
+
+    height: 100px;
+    border-right: 1px solid rgba(128, 128, 128, 0.349);
+}
+.income .total{
+    align-self: flex-end;
+}
+.arrows{
+    font-size: 4rem;
+    font-weight: bold;
+    margin-right: 2rem;
+}
+.lastchild{
+    border-right: 0;
 }
 /* transactions widget*/
 .transactions{
     grid-column: span 1;
-    grid-row: span 1;
+    grid-row: span 2;
+    width: 500px;
+    height: 1200px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-self: center;
 }
 
 .transactions h2{
@@ -94,11 +146,12 @@ main{
 }
 
 .recurringTransactions{
-    grid-column: 2;
+    grid-column: 1;
     grid-row: span 1;
     display: flex;
     align-items: center;
     flex-direction: column;
+    height: 585px;
 }
 
 .recurringTransactions h2{
@@ -114,25 +167,89 @@ main{
     overflow-y: scroll;
 }
 
+.list::-webkit-scrollbar{
+    width: 10px;
+}
 
+.list::-webkit-scrollbar-track{
+    background: transparent;
+}
+.list::-webkit-scrollbar-thumb{
+    background: rgb(245, 245, 245);
+    border-radius: 2rem;
+}
+
+.expenses{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+.expenses .button{
+    display:none;
+    width: 0%;
+    font-size: 3rem;
+    background-color: rgb(235, 74, 74);
+    color: black;
+    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 2rem;
+    transition: width 2s;
+}
 .item{
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.349);
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .item .transaction-title{
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-bottom: 0.35rem;
 }
 .item .transaction-description{
     font-style: italic;
-    font-size: 0.85rem;
+    font-size: 1.15rem;
 }
 .item .transaction-ammount{
     align-self: flex-end;
-    margin: 0.35rem;
+    height: 100%;
+    font-size: 2rem;
+    margin: -10px 0.35rem;
+    padding: 0 1.25rem;
 }
+
+.arrowButton{
+    display: none;
+    width: 0%;
+    font-size: 2.5rem;
+    background-color: rgb(100, 255, 100);
+    color: black;
+    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 2rem;
+}
+
+.deleteButton {
+    display:none;
+    width: 0%;
+    font-size: 3rem;
+    background-color: rgb(235, 74, 74);
+    color: black;
+}
+
+.expenses:hover .deleteButton, .expenses:hover .arrowButton{
+    display: block;
+    width: 15%;
+    
+}
+.expenses:hover .button{
+    display: block;
+    width: 20%;
+}
+
+.expenses:hover .item {
+    width: 80%;
+}
+
+
 /* stats widget*/
 
 
@@ -142,55 +259,8 @@ main{
 .addMoney{
     grid-row: span 1;
     grid-column: span 1;
-    height: 510px;
+    height: 580px;
+    width: 500px;
+    justify-self: center;
 }
 
-.button-transaction{
-    position: absolute;
-    bottom: 5%;
-    right: 1%;
-    width: 70px;
-    height: 70px;
-    background-color: black;
-    border-radius: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-}
-
-.button-transaction p{
-    font-size: 4rem;
-    padding: 0;
-    margin-top: -10px;
-    color: whitesmoke;
-    font-weight: bolder;
-
-}
-
-.button-recurring{
-    position: absolute;
-    bottom: 13%;
-    right: 1%;
-    width: 70px;
-    height: 70px;
-    background-color: gray;
-    border-radius: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-}
-
-.button-recurring p{
-    font-size: 3rem;
-    padding: 0;
-    margin-top: -10px;
-    color: whitesmoke;
-    font-weight: bolder;
-
-}
