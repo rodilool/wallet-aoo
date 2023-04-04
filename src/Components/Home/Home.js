@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
-import Add_Transaction from "../../Features/Add-Transaction/Add-Transaction";
-import Add_Recurring from "../../Features/Add-Recurring/Add-Recurring";
+import AddMoney from "../AddMoney/AddMoney";
 
 export default class Home extends Component {
   constructor(props) {
@@ -230,10 +229,23 @@ export default class Home extends Component {
       <main>
         <div className="main">
           <div className="balance-widget">
-            <h2>BALANCE</h2>
             <div className="balance">
-              <p>${this.balance()}</p>
+              <h2>BALANCE</h2>
+              <p className="total">${this.balance()}</p>
             </div>
+            <div className="stats">
+              <div className="thisDate">
+                <h2>THIS MONTH</h2>
+                {<p> ${this.getThisMonths()}</p>}
+              </div>
+            </div>
+          </div>
+          {/* Add money or recurring widget */}
+          <div className="addMoney">
+            <AddMoney
+              addTransaction={this.addTransaction}
+              addRecurringTransactions={this.addRecurringTransactions}
+            ></AddMoney>
           </div>
           {/* Transactions widget */}
           <div className="transactions">
@@ -262,7 +274,7 @@ export default class Home extends Component {
           </div>
 
           {/* Recurring payments */}
-          <div className="transactions">
+          <div className="recurringTransactions">
             <h2>RECURRING TRANSACTIONS</h2>
             <div className="list">
               {/* Will map through the recurring state array and display each object on it  */}
@@ -292,22 +304,7 @@ export default class Home extends Component {
               })}
             </div>
           </div>
-
-          <div className="stats">
-            <h2>THIS MONTH</h2>
-            {<p> ${this.getThisMonths()}</p>}
-          </div>
         </div>
-        <div className="button-transaction">
-          <p onClick={this.openTab_Transaction}>+</p>
-        </div>
-        <div className="button-recurring">
-          <p onClick={this.openTab_Recurring}>O</p>
-        </div>
-        <Add_Transaction addTransaction={this.addTransaction} />
-        <Add_Recurring
-          addRecurringTransactions={this.addRecurringTransactions}
-        />
       </main>
     );
   }

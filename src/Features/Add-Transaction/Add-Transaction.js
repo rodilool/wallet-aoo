@@ -67,10 +67,6 @@ class Add_Transaction extends React.Component {
     event.target.ammount.value = "";
   };
 
-  closeTab = () => {
-    document.getElementById("tab").style.display = "none";
-  };
-
   addActiveClass(e) {
     const clicked = e.target.id;
     if (this.state.active === clicked) {
@@ -84,8 +80,10 @@ class Add_Transaction extends React.Component {
   // first one is the gained Section
   firstActive() {
     return (
-      <form onSubmit={this.onSubmitGain}>
-        <label htmlFor="title">Title:</label>
+      <form onSubmit={this.onSubmitGain} className="formTransaction">
+        <label htmlFor="title" className="label">
+          Title:
+        </label>
         <input
           id="form"
           name="title"
@@ -96,7 +94,9 @@ class Add_Transaction extends React.Component {
           required
         ></input>
         <br />
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="description" className="label">
+          Description:
+        </label>
         <input
           id="form"
           name="description"
@@ -106,7 +106,9 @@ class Add_Transaction extends React.Component {
           required
         ></input>
         <br />
-        <label htmlFor="ammount">Ammount:</label>
+        <label htmlFor="ammount" className="label">
+          Ammount:
+        </label>
         <input
           id="form"
           name="ammount"
@@ -116,15 +118,19 @@ class Add_Transaction extends React.Component {
           placeholder="Ammount"
           required
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit">
+          Submit
+        </button>
       </form>
     );
   }
   // second one is the spent Section
   secondActive() {
     return (
-      <form onSubmit={this.onSubmitSpent}>
-        <label htmlFor="title">Title:</label>
+      <form onSubmit={this.onSubmitSpent} className="formTransaction">
+        <label htmlFor="title" className="label">
+          Title:
+        </label>
         <input
           id="form"
           name="title"
@@ -135,7 +141,9 @@ class Add_Transaction extends React.Component {
           required
         ></input>
         <br />
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="description" className="label">
+          Description:
+        </label>
         <input
           id="form"
           name="description"
@@ -145,7 +153,9 @@ class Add_Transaction extends React.Component {
           required
         ></input>
         <br />
-        <label htmlFor="ammount">Ammount:</label>
+        <label htmlFor="ammount" className="label">
+          Ammount:
+        </label>
         <input
           id="form"
           name="ammount"
@@ -155,7 +165,9 @@ class Add_Transaction extends React.Component {
           placeholder="Ammount"
           required
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit">
+          Submit
+        </button>
       </form>
     );
   }
@@ -199,20 +211,9 @@ class Add_Transaction extends React.Component {
           </li>
           {/* <li className={`choice ${this.state.active === "third"? 'active': ''}`} id='third' onClick={e => this.addActiveClass(e)} >Transfer</li> */}
         </ul>
-        {this.state.active === "first" ? (
-          <div className="form">{this.firstActive()}</div>
-        ) : (
-          ""
-        )}
-        {this.state.active === "second" ? (
-          <div className="form">{this.secondActive()}</div>
-        ) : (
-          ""
-        )}
+        {this.state.active === "first" ? <div>{this.firstActive()}</div> : ""}
+        {this.state.active === "second" ? <div>{this.secondActive()}</div> : ""}
         {/* {this.state.active === 'third' ? <div className="form">{this.firstActive()}</div> : ''} */}
-        <p className="close" onClick={this.closeTab}>
-          x
-        </p>
       </div>
     );
   }
