@@ -15,7 +15,7 @@ class NavBar extends Component {
         <label id="hamburger-menu" htmlFor="hamburger-input">
           <nav id="sidebar-menu">
             <h2>Menu</h2>
-            <h3>Welcome, ${this.name}.</h3>
+            <h3>Welcome, {this.name}.</h3>
             <ul>
               <li>
                 <a href="#">Home</a>
