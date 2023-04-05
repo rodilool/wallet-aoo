@@ -5,6 +5,7 @@ import "./NavBar.css";
 class NavBar extends Component {
   constructor(props) {
     super(props);
+    this.name = this.props.name;
   }
   state = {};
   render() {
@@ -13,7 +14,8 @@ class NavBar extends Component {
         <input type="checkbox" id="hamburger-input" className="burger-shower" />
         <label id="hamburger-menu" htmlFor="hamburger-input">
           <nav id="sidebar-menu">
-            <h3>Menu</h3>
+            <h2>Menu</h2>
+            <h3>Welcome, ${this.name}.</h3>
             <ul>
               <li>
                 <a href="#">Home</a>

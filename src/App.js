@@ -44,7 +44,7 @@ function App() {
         <LoginPage className="LoginPage" Register={Register} />
       ) : (
         <>
-          <NavBar />
+          {/* <NavBar name={name} /> */}
           <Home balance={balance} />
         </>
       )}

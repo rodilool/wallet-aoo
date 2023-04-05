@@ -70,3 +70,17 @@ html{
     background-color: transparent;
     border: 2px solid whitesmoke;
 }
+@media (max-width:1123px) {
+        .submit{
+        font-size: 1.25rem;
+    }
+}
+@media (max-width:530px) {
+    .choice{
+        font-size: 1.35rem;
+    }
+    .label{
+        font-size: 1.35rem;
+    }
+
+}

@@ -7,6 +7,7 @@ export default class AddMoney extends Component {
   constructor(props) {
     super(props);
     this.addTransaction = this.props.addTransaction;
+    this.closeTab = this.props.closeTab;
     this.addRecurringTransactions = this.props.addRecurringTransactions;
     this.state = {
       active: "first",
@@ -29,6 +30,9 @@ export default class AddMoney extends Component {
   render() {
     return (
       <nav className="content">
+        <p className="close" onClick={this.closeTab}>
+          X
+        </p>
         <div className="type-choice">
           <div
             className={`type-${this.state.active === "first" ? "active" : ""}`}

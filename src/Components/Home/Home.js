@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Home.css";
 import AddMoney from "../AddMoney/AddMoney";
+import NavBar from "../NavBar/NavBar";
 
 export default class Home extends Component {
   constructor(props) {
@@ -16,9 +17,6 @@ export default class Home extends Component {
     };
   }
 
-  componentDidUpdate() {
-    this.getThisMonths();
-  }
   // it will get all the objects, map through their months and add the ones that are the same as the month and year on the users computer
   // it will then add all of the expenses ammounts of this new array to a total and display it.
   getThisMonths = () => {
@@ -273,16 +271,23 @@ export default class Home extends Component {
     return total;
   }
   // it opens the tabs to add the transaction and the recurring payments
-  openTab_Transaction = () => {
-    document.getElementById("tab").style.display = "flex";
+  openTab = () => {
+    if (document.getElementById("addTransaction")) {
+      document.getElementById("addTransaction").style.display = "flex";
+    }
   };
-  openTab_Recurring = () => {
-    document.getElementById("tab-recurring").style.display = "flex";
+  closeTab = () => {
+    if (document.getElementById("addTransaction")) {
+      document.getElementById("addTransaction").style.display = "none";
+    } else {
+      console.log("hello");
+    }
   };
 
   render() {
     return (
       <main>
+        <NavBar />
         <div className="main">
           <div className="balance-widget">
             <div className="balance">
@@ -319,12 +324,14 @@ export default class Home extends Component {
             </div>
           </div>
           {/* Add money or recurring widget */}
-          <div className="addMoney">
+          <div className="addMoney" id="addTransaction">
             <AddMoney
               addTransaction={this.addTransaction}
               addRecurringTransactions={this.addRecurringTransactions}
+              closeTab={this.closeTab}
             ></AddMoney>
           </div>
+
           {/* Transactions widget */}
           <div className="transactions">
             <h2>TRANSACTIONS</h2>
@@ -402,6 +409,14 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
+        <button
+          className="button-36"
+          role="button"
+          onClick={this.openTab}
+          id="button-36"
+        >
+          +
+        </button>
       </main>
     );
   }

@@ -31,7 +31,7 @@
     cursor: pointer;
     text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.356),
     3px 3px 0px rgba(9, 8, 10, 0.438),
-    6px 6px 0px rgba(197, 126, 255, 0.26);
+    2px 2px 0px rgba(197, 126, 255, 0.26);
 }
 
 .form{
@@ -46,4 +46,43 @@
 form{
     display: flex;
     flex-direction: column;
+}
+
+.close{
+    display: none;
+    position: fixed;
+    top: 2%;
+    right: 5%;
+    cursor: pointer;
+    font-size: 1.35rem;
+}
+
+@media (max-width:1123px) {
+    .form{
+        width: 100%;
+        padding: 0;
+        background-color: #331154;
+    }
+    .type-active{
+        background-color: #331154;
+        padding: 0.45rem 0;
+    }
+    .type-choice{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+    .type-{
+        width: 100%;
+        background-color: #ad5cff;
+        padding: 0.45rem 0;
+    }
+    .content{
+        margin: 0 auto;
+        margin-top: 100px;
+        width: 90%;
+    }
+    .close{
+        display: block;
+    }
 }
