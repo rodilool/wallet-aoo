@@ -287,7 +287,7 @@ export default class Home extends Component {
   render() {
     return (
       <main>
-        <NavBar />
+        <NavBar name={this.props.name} />
         <div className="main">
           <div className="balance-widget">
             <div className="balance">

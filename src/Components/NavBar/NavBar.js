@@ -19,9 +19,9 @@ class NavBar extends Component {
             <h3>Welcome, {this.name}.</h3>
             <ul>
               <li>
-                <a href="#">Home</a>
+                <a href="#">Coming soon!</a>
               </li>
-              <li>
+              {/* <li>
                 <a href="#">Recurring Payments</a>
               </li>
               <li>
@@ -32,7 +32,7 @@ class NavBar extends Component {
               </li>
               <li>
                 <a href="#">Settings</a>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </label>

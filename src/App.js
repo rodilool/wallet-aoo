@@ -45,7 +45,7 @@ function App() {
       ) : (
         <>
           {/* <NavBar name={name} /> */}
-          <Home balance={balance} />
+          <Home balance={balance} name={name} />
         </>
       )}
     </div>
