@@ -157,9 +157,6 @@ export default class Home extends Component {
   };
 
   recurringTransactionsTransfer = (obj) => {
-    // let expense = [...this.state.expenses];
-    // expense.push(obj);
-
     let date = new Date();
 
     this.title = obj.title;
@@ -180,11 +177,45 @@ export default class Home extends Component {
       this.month,
       this.day
     );
+  };
 
-    // localStorage.setItem("transactions", JSON.stringify(expense));
-    // this.setState({
-    //   expenses: JSON.parse(localStorage.getItem("transactions")),
-    // });
+  deleteTransaction = (obj) => {
+    let storedTransactions = JSON.parse(localStorage.getItem("transactions"));
+    let index = storedTransactions;
+    console.log(index);
+
+    index.map((expense) => {
+      if (obj.id !== expense.id) {
+        return;
+      } else if (obj.id === expense.id) {
+        index.splice(index.indexOf(expense), 1);
+      }
+    });
+    console.log(index);
+    localStorage.setItem("transactions", JSON.stringify(index));
+    this.setState({
+      expenses: JSON.parse(localStorage.getItem("transactions")),
+    });
+  };
+  deleteRecurringTransaction = (obj) => {
+    let storedRecurringTransactions = JSON.parse(
+      localStorage.getItem("recurringTransactions")
+    );
+    let index = storedRecurringTransactions;
+    console.log(index);
+
+    index.map((recurringTransaction) => {
+      if (obj.id !== recurringTransaction.id) {
+        return;
+      } else if (obj.id === recurringTransaction.id) {
+        index.splice(index.indexOf(recurringTransaction), 1);
+      }
+    });
+    console.log(index);
+    localStorage.setItem("recurringTransactions", JSON.stringify(index));
+    this.setState({
+      recurring: JSON.parse(localStorage.getItem("recurringTransactions")),
+    });
   };
 
   // it opens the tabs to add the transaction and the recurring payments
@@ -214,6 +245,9 @@ export default class Home extends Component {
               {this.state.expenses.reverse().map((expense) => {
                 return (
                   <div key={expense.id} className="item">
+                    <button onClick={() => this.deleteTransaction(expense)}>
+                      x
+                    </button>
                     <h3 className="transaction-title">{expense.title}</h3>
                     <p className="transaction-description">
                       "{expense.description}"
@@ -242,6 +276,11 @@ export default class Home extends Component {
                       }
                     >
                       &larr;
+                    </button>
+                    <button
+                      onClick={() => this.deleteRecurringTransaction(payment)}
+                    >
+                      x
                     </button>
                     <h3 className="transaction-title">{payment.title}</h3>
                     <p className="transaction-description">
